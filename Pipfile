@@ -6,6 +6,7 @@ name = "pypi"
 [packages]
 synthesizer = "*"
 pyaudio = "*"
+py-midi = "*"
 
 [dev-packages]
 
