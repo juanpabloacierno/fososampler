@@ -8,3 +8,5 @@
 - cargar archivo de sample, considerar distintos formatos de audio
 
 - armar una botonera para samples
+
+- MIDI IN MIDI OUT
