@@ -18,7 +18,7 @@ ton = pygame.mixer.Sound('5.wav')
 
 port = mido.get_input_names()   # MIDI port names
 print(port)
-inport = mido.open_input('IAC Driver Bus 1')    # listen port
+inport = mido.open_input()    # listen port
 
 def play1():
     ch1.play(ton)

@@ -9,6 +9,8 @@ pyaudio = "*"
 py-midi = "*"
 mido = "*"
 python-rtmidi = "*"
+pygame = "*"
+tk = "*"
 
 [dev-packages]
 
