@@ -9,8 +9,8 @@ pygame.mixer.init(frequency=44100, size= -16, channels=2, buffer=128)     # init
 ch1 = pygame.mixer.Channel(0)  # declare N channels
 ch2 = pygame.mixer.Channel(1)
 
-kick = pygame.mixer.Sound('2.wav')  # sound bank
-ton = pygame.mixer.Sound('5.wav')
+kick = pygame.mixer.Sound('audio/2.wav')  # sound bank
+ton = pygame.mixer.Sound('audio/5.wav')
 
 port = mido.get_input_names()   # MIDI port names
 print(port)

@@ -10,9 +10,9 @@ ch1 = pygame.mixer.Channel(0)  # declare channels
 ch2 = pygame.mixer.Channel(1)
 ch3 = pygame.mixer.Channel(2)
 
-a1 = pygame.mixer.Sound('2.wav')  # sound bank
-a2 = pygame.mixer.Sound('dale.wav')
-a3 = pygame.mixer.Sound('crovo.wav')
+a1 = pygame.mixer.Sound('audio/2.wav')  # sound bank
+a2 = pygame.mixer.Sound('audio/dale.wav')
+a3 = pygame.mixer.Sound('audio/crovo.wav')
 
 def play_1():
     ch1.play(a1)
