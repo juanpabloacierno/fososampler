@@ -17,9 +17,9 @@ ton = pygame.mixer.Sound('crovo.wav')
 
 def play1():
     ch1.play(ton)
-    title = Label(root, text="fososampler", bd=9, relief=GROOVE, font=("Calibri",50,"bold"), bg="white", fg="green")
-    title.pack(side=TOP, fill=X)
+title = Label(root, text="fososampler", bd=9, relief=GROOVE, font=("Calibri", 50, "bold"), bg="white", fg="green")
+title.pack(side=TOP, fill=X)
 
-    play_button = Button(root, text="crovo", font=("Calibri", 32), command=play1)
-    play_button.pack(pady=20)
-    root.mainloop()
+play_button = Button(root, text="crovo", font=("Calibri", 32), command=play1)
+play_button.pack(pady=20)
+root.mainloop()
