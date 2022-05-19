@@ -7,6 +7,8 @@ name = "pypi"
 synthesizer = "*"
 pyaudio = "*"
 py-midi = "*"
+mido = "*"
+python-rtmidi = "*"
 
 [dev-packages]
 
