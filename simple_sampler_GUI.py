@@ -9,12 +9,12 @@ root.title('fososampler')
 root.geometry("500x400")
 
 pygame.init()   #init pygame
-pygame.mixer.init()     # init mixer
+pygame.mixer.init(frequency=44100, size= -16, channels=2, buffer=128)     # init mixer
 ch1 = pygame.mixer.Channel(0)  # declare channels
 ch2 = pygame.mixer.Channel(1)
 
 kick = pygame.mixer.Sound('2.wav')  # sound bank
-ton = pygame.mixer.Sound('5.wav')
+ton = pygame.mixer.Sound('crovo.wav')
 
 port = mido.get_input_names()   # MIDI port names
 print(port)
