@@ -2,6 +2,8 @@
 
 Establecer objetivos claros:
 
-- Cual sería la funcionalidad mínima que debería tener el sampler?
+- la botonera tiene tres sonidos -> DALE, CROVO y NENU
 
-- Donde debería correr? (Plataforma)
+- va a correr en el browser usando pyscript para experimentar la interacción JS <-> python
+    - desde el DOM, JS le pasará a través de un knob los parámetros a pyscript
+ 
