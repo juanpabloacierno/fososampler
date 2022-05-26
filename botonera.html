@@ -1,0 +1,64 @@
+<!-- html boilerplate -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <script src="assets/pure-knob-master/pureknob.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>
+                    Foso sampler
+                </h1>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-12">
+                <h2>La botonera de ation y el nenu</h2>
+            </div>
+            <hr>
+
+            <div id="knob1" class="knob align">
+                <button class="button">Dale (1)</button>
+            </div>  
+            <div id="knob2" class="knob align">
+                <button class="button">Crovo (2)</button>
+            </div>  
+            <div id="knob3" class="knob align">
+                <button class="button">Nenu (3)</button>
+            </div>  
+        </div>
+    </div>
+    <script>
+        var knob_divs = document.getElementsByClassName('knob');
+        console.log(knob_divs);
+        Knob_divs = Array.from(knob_divs);
+
+        Knob_divs.map(
+            function(knob_div){
+                var myKnob = pureknob.createKnob(200, 100);
+                myKnob.setValue(50);
+            
+                // Append the knob to an element.
+                var node = myKnob.node();
+                knob_div.appendChild(node);
+                // Add Listener
+                var listener = function(myKnob, value) {
+                    console.log(value);
+                };
+                myKnob.addListener(listener);
+        });
+
+    </script>
+</body>
+</html>
+
