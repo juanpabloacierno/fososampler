@@ -46,6 +46,14 @@
         Knob_divs.map(
             function(knob_div){
                 var myKnob = pureknob.createKnob(200, 100);
+                
+                myKnob.setProperty('angleStart', -0.75 * Math.PI);
+                myKnob.setProperty('angleEnd', 0.75 * Math.PI);
+                myKnob.setProperty('colorFG', '#08ff88');
+                myKnob.setProperty('trackWidth', 0.4);
+                myKnob.setProperty('valMin', 0);
+                myKnob.setProperty('valMax', 100);
+                
                 myKnob.setValue(50);
             
                 // Append the knob to an element.
@@ -53,7 +61,7 @@
                 knob_div.appendChild(node);
                 // Add Listener
                 var listener = function(myKnob, value) {
-                    console.log(value);
+                    console.log(myKnob, value);
                 };
                 myKnob.addListener(listener);
         });
