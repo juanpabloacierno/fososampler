@@ -16,8 +16,14 @@
 /* .button4 {background-color: #e7e7e7; color: black;} /* Gray */   */
 /* .buttonBlack {background-color: #555555;} Black */
 
-.align {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+.container {
+
+}
+
+.child {
+/* horizontally center child vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
