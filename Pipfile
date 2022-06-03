@@ -11,6 +11,9 @@ mido = "*"
 python-rtmidi = "*"
 pygame = "*"
 tk = "*"
+pillow = "*"
+gtts = "*"
+pytesseract = "*"
 
 [dev-packages]
 
