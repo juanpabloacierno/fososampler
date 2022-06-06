@@ -12,8 +12,8 @@ pygame.mixer.init(frequency=44100, size=-16, channels=2, buffer=128)  # init mix
 ch1 = pygame.mixer.Channel(0)  # declare channels
 ch2 = pygame.mixer.Channel(1)
 
-kick = pygame.mixer.Sound('audio/2.wav')  # sound bank
-crovo = pygame.mixer.Sound('audio/crovo.wav')
+kick = pygame.mixer.Sound('site/assets/audio/2.wav')  # sound bank
+crovo = pygame.mixer.Sound('site/assets/audio/crovo.wav')
 
 
 def play1():

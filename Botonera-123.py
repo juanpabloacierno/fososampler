@@ -3,9 +3,9 @@
 import pygame
 
 lst = [
-'2.wav',   # key 1
-'5.wav',  # key 2
-'crovo.wav' # key 3
+'site/assets/audio/2.wav',   # key 1
+'site/assets/audio/5.wav',  # key 2
+'site/assets/audio/crovo.wav' # key 3
 ]
 
 pygame.init()

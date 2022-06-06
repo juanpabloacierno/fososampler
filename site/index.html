@@ -1,0 +1,93 @@
+<!-- html boilerplate -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>FosoSampler</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <script src="assets/pure-knob-master/pureknob.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Foso sampler®</h1>
+    </header>
+    <main>
+        <div class="container">
+            <div class="row">
+                <div id="knob1" class="knob align"></div>  
+                <div id="knob2" class="knob align"></div>  
+                <div id="knob3" class="knob align"></div>
+                <div id="knob4" class="knob align"></div>
+            </div>
+            <img src="assets/img/ation.jpg">  
+        </div>
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js" integrity="sha512-6+YN/9o9BWrk6wSfGxQGpt3EUK6XeHi6yeHV+TYD2GR0Sj/cggRpXr1BrAQf0as6XslxomMUxXp2vIl+fv0QRA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        var knob_divs = document.getElementsByClassName('knob');
+        var audio_files = [
+            {
+                file: 'assets/audio/dale.mp3',
+                name: 'Dale',
+            },
+            {
+                file: 'assets/audio/crovo.mp3',
+                name: 'Crovo!',
+            },
+            {
+                file: 'assets/audio/5.mp3',
+                name: 'Pim 🤡',
+            },        
+            {
+                file: 'assets/audio/2.mp3',
+                name: 'Pum 💩',
+            },        
+        ];
+        Knob_divs = Array.from(knob_divs);
+
+        Knob_divs.map(
+            function(knob_div, index){
+                var myKnob = pureknob.createKnob(180, 300);
+                
+                myKnob.setProperty('angleStart', -0.75 * Math.PI);
+                myKnob.setProperty('angleEnd', 0.75 * Math.PI);
+                myKnob.setProperty('colorFG', '#f03229');
+                myKnob.setProperty('trackWidth', 0.4);
+                myKnob.setProperty('valMin', 25);
+                myKnob.setProperty('valMax', 200);
+                myKnob.setProperty('label', audio_files[index].name);
+                myKnob.setProperty('colorLabel', '#f03229');
+                myKnob.setProperty('textScale', 0.85);
+                
+                myKnob.setValue(100);
+            
+                // open audio files
+                var sound = new Howl({
+                    src: [audio_files[index].file],  
+                    // autoplay: true,
+                    loop: true,           
+                });
+
+                // Append the knob to an element.
+                var node = myKnob.node();
+                knob_div.appendChild(node);
+
+                // Add Listener
+                var listener = function(myKnob, value) {
+                    var value = value / 100;
+                    sound.rate(value);
+                    sound.fade(1, 0, 2500);
+                    sound.play();
+                    // console.log(myKnob, value);
+                };
+                myKnob.addListener(listener);
+        });
+
+    </script>
+</body>
+</html>
+
