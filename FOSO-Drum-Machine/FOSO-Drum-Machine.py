@@ -32,6 +32,7 @@ playing = True
 active_length = 0
 active_beat = 1
 beat_changed = True
+crovo = pygame.image.load('crovo.png')
 
 # --- LOAD IN SOUNDS ---
 hi_hat = mixer.Sound('sounds/hi hat.wav')
@@ -91,16 +92,23 @@ def draw_grid(clicks, beat):
             # if the click is positive, color will be green
             else:
                 color = green
+
             rect = pygame.draw.rect(screen, color,  # TEST --> print(f"i: {i}  j: {j}  rect: {rect}")
                                     [i * ((WITH - 200) // beats) + 205,  # initial position (x axis)
                                      (j * 100) + 5,  # initial position (y axis)
-                                     (WITH - 200) // beats - 10,  # with with a bias
+                                     (WITH - 200) // beats - 10,  # with a bias
                                      ((HEIGHT - 200) // instruments) - 10],  # high
                                     0, 3)
+
             pygame.draw.rect(screen, gold, [i * ((WITH - 200) // beats) + 200, (j * 100), ((WITH - 200)) // beats,
                                             ((HEIGHT - 200) // instruments)], 5, 5)
             pygame.draw.rect(screen, black, [i * ((WITH - 200) // beats) + 200, (j * 100), ((WITH - 200)) // beats,
                                              ((HEIGHT - 200) // instruments)], 3, 5)
+            if color == green:
+                x_img = i * ((WITH - 200) // beats) + 205
+                y_img = (j * 100) + 5
+                screen.blit(crovo,(x_img, y_img))
+
             # this list box was empty. So it add boxes as a list
             boxes.append((rect, (i, j)))
         active = pygame.draw.rect(screen, blue,
@@ -131,7 +139,7 @@ while run:
             for i in range(len(boxes)):
                 # TRUE if the mouse is inside the rectangle / event.pos get mouse pointer on screen (x, y)
                 if boxes[i][0].collidepoint(event.pos):
-                    # get coordenates (not pixels, instead boxes cells) on every click
+                    # get coordinates (not pixels, instead boxes cells) on every click
                     coords = boxes[i][1]
                     clicked[coords[1]][coords[0]] *= -1
     # 3600 = fps * 60 sec
