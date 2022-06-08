@@ -50,17 +50,17 @@ def play_notes():
     for i in range(len(clicked)):
         if clicked[i][active_beat] == 1:
             if i == 0:
-                hi_hat.play()
+                pygame.mixer.Channel(0).play(hi_hat)
             if i == 1:
-                snare.play()
+                pygame.mixer.Channel(1).play(snare)
             if i == 2:
-                kick.play()
+                pygame.mixer.Channel(2).play(kick)
             if i == 3:
-                crash.play()
+                pygame.mixer.Channel(3).play(crash)
             if i == 4:
-                clap.play()
+                pygame.mixer.Channel(4).play(clap)
             if i == 5:
-                tom.play()
+                pygame.mixer.Channel(5).play(tom)
 
 
 def draw_grid(clicks, beat):
@@ -123,7 +123,7 @@ while run:
     if beat_changed:
         play_notes()
         beat_changed = False
-        print(play_notes())
+        # print(play_notes())
 
     # check if someone is pressing a key, mouse, etc (every event)
     for event in pygame.event.get():                                            
