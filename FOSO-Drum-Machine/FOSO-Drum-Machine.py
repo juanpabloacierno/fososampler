@@ -9,6 +9,7 @@ HEIGHT = 800
 black = (0, 0, 0)
 white = (255, 255, 255)
 gray = (128, 128, 128)
+dark_gray = (50, 50, 50)
 green = (0, 255, 0)
 gold = (212, 175, 55)
 blue = (0, 255, 255)
@@ -18,6 +19,7 @@ tickness1 = 5
 screen = pygame.display.set_mode([WIDTH, HEIGHT])
 pygame.display.set_caption("Beat Maker")
 label_font = pygame.font.Font("Roboto-Bold.ttf", 32)
+medium_font = pygame.font.Font("Roboto-Bold.ttf", 24)
 # init mixer
 pygame.mixer.init(frequency=44100, size=-16, channels=2, buffer=128)
 
@@ -163,9 +165,46 @@ while run:
     # meanwhile the game is ON, fill the screen
     screen.fill(black)
     boxes = draw_grid(clicked, active_beat)
+
+    # lower menu buttons
+    play_pause = pygame.draw.rect(screen, gray, [50, HEIGHT - 150, 200, 100], 0, 5)
+    play_text = label_font.render("Play/Pause", True, white)
+    screen.blit(play_text, (70, HEIGHT - 130))
+    if playing:
+        play_text2 = medium_font.render("Playing", True, dark_gray)
+    else:
+        play_text2 = medium_font.render("Pused", True, dark_gray)
+    screen.blit(play_text2, (70, HEIGHT - 100))
+
+    # BPM buttons
+    bpm_rect = pygame.draw.rect(screen, gray, [300, HEIGHT - 150, 200, 100], 5, 5)
+    bpm_text = medium_font.render("Beats per minute", True, white)
+    screen.blit(bpm_text, (308, HEIGHT - 130))
+    bpm_text2 = label_font.render(f"{bpm}", True, white)
+    screen.blit(bpm_text2, (370, HEIGHT - 100))
+    bpm_add_rect = pygame.draw.rect(screen, gray, [510, HEIGHT - 150, 48, 48], 0, 5)
+    bpm_sub_rect = pygame.draw.rect(screen, gray, [510, HEIGHT - 100, 48, 48], 0, 5)
+    add_text = medium_font.render("+5", True, white)
+    sub_text = medium_font.render("-5", True, white)
+    screen.blit(add_text, (520, HEIGHT - 140))
+    screen.blit(sub_text, (520, HEIGHT - 90))
+    # --- BEATS control ----
+    beats_rect = pygame.draw.rect(screen, gray, [600, HEIGHT - 150, 200, 100], 5, 5)
+    beats_text = medium_font.render("Beats in loop", True, white)
+    screen.blit(beats_text, (618, HEIGHT - 130))
+    beats_text2 = label_font.render(f"{beats}", True, white)
+    screen.blit(beats_text2, (670, HEIGHT - 100))
+    beats_add_rect = pygame.draw.rect(screen, gray, [810, HEIGHT - 150, 48, 48], 0, 5)
+    beats_sub_rect = pygame.draw.rect(screen, gray, [810, HEIGHT - 100, 48, 48], 0, 5)
+    add_text = medium_font.render("+1", True, white)
+    sub_text = medium_font.render("-1", True, white)
+    screen.blit(add_text, (820, HEIGHT - 140))
+    screen.blit(sub_text, (820, HEIGHT - 90))
+
     if beat_changed:
         play_notes()
         beat_changed = False
+
     # check if someone is pressing a key, mouse, etc (every event)
     for event in pygame.event.get():
         # if some quit, stop the game
@@ -180,6 +219,25 @@ while run:
                     # get coordinates (not pixels, instead boxes cells) on every click
                     coords = boxes[i][1]
                     clicked[coords[1]][coords[0]] *= -1
+        # BPM click recognition
+        if event.type == pygame.MOUSEBUTTONUP:
+            if play_pause.collidepoint(event.pos):
+                if playing:
+                    playing = False
+                elif not playing:
+                    playing = True
+            elif bpm_add_rect.collidepoint(event.pos):
+                bpm += 5
+            elif bpm_sub_rect.collidepoint(event.pos):
+                bpm -= 5
+            elif beats_add_rect.collidepoint(event.pos):
+                beats += 1
+                for i in range(len(clicked)):
+                    clicked[i].append(-1)
+            elif beats_sub_rect.collidepoint(event.pos):
+                beats -= 1
+                for i in range(len(clicked)):
+                    clicked[i].pop(-1)
     # 3600 = fps * 60 sec
     beat_length = 3600 // bpm
 
