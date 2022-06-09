@@ -20,12 +20,7 @@ pygame.display.set_caption('Beat Maker')
 label_font = pygame.font.Font('Roboto-Bold.ttf', 32)
 # init mixer
 pygame.mixer.init(frequency=44100, size=-16, channels=2, buffer=128)
-ch1 = pygame.mixer.Channel(0)
-ch2 = pygame.mixer.Channel(1)
-ch3 = pygame.mixer.Channel(2)
-ch4 = pygame.mixer.Channel(3)
-ch5 = pygame.mixer.Channel(4)
-ch6 = pygame.mixer.Channel(5)
+
 
 fps = 60
 # MASTER CLOCK
@@ -49,25 +44,24 @@ kick = mixer.Sound('sounds/kick.wav')
 crash = mixer.Sound('sounds/crash.wav')
 clap = mixer.Sound('sounds/clap.wav')
 tom = mixer.Sound('sounds/tom.wav')
-pygame.mixer.set_num_channels(instruments * 3)
 
 
 def play_notes():
     for i in range(len(clicked)):
         if clicked[i][active_beat] == 1:
             if i == 0:
-                ch1.play(hi_hat)
+                pygame.mixer.Channel(0).play(hi_hat)
             if i == 1:
-                ch2.play(snare)
+                pygame.mixer.Channel(1).play(snare)
             if i == 2:
-                ch3.play(kick)
+                pygame.mixer.Channel(2).play(kick)
             if i == 3:
-                ch4.play(crash)
+                pygame.mixer.Channel(3).play(crash)
             if i == 4:
-                ch5.play(clap)
+                pygame.mixer.Channel(4).play(clap)
             if i == 5:
-                ch6.play(tom)
-
+                pygame.mixer.Channel(5).play(tom)
+                
 
 def draw_grid(clicks, beat):
     # left box-Arguments (x, y, with, height, tick)
