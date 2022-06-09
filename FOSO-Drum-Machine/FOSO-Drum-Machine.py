@@ -3,7 +3,7 @@ from pygame import mixer
 
 pygame.init()
 # dimensions
-WITH = 1400
+WIDTH = 1400
 HEIGHT = 800
 # colores
 black = (0, 0, 0)
@@ -15,9 +15,9 @@ blue = (0, 255, 255)
 tickness1 = 5
 
 # create screen
-screen = pygame.display.set_mode([WITH, HEIGHT])
-pygame.display.set_caption('Beat Maker')
-label_font = pygame.font.Font('Roboto-Bold.ttf', 32)
+screen = pygame.display.set_mode([WIDTH, HEIGHT])
+pygame.display.set_caption("Beat Maker")
+label_font = pygame.font.Font("Roboto-Bold.ttf", 32)
 # init mixer
 pygame.mixer.init(frequency=44100, size=-16, channels=2, buffer=128)
 
@@ -35,15 +35,15 @@ playing = True
 active_length = 0
 active_beat = 1
 beat_changed = True
-image = pygame.image.load('crovo.png')
+image = pygame.image.load("crovo.png")
 
 # --- LOAD IN SOUNDS ---
-hi_hat = mixer.Sound('sounds/hi hat.wav')
-snare = mixer.Sound('sounds/snare.wav')
-kick = mixer.Sound('sounds/kick.wav')
-crash = mixer.Sound('sounds/crash.wav')
-clap = mixer.Sound('sounds/clap.wav')
-tom = mixer.Sound('sounds/tom.wav')
+hi_hat = mixer.Sound("sounds/hi hat.wav")
+snare = mixer.Sound("sounds/snare.wav")
+kick = mixer.Sound("sounds/kick.wav")
+crash = mixer.Sound("sounds/crash.wav")
+clap = mixer.Sound("sounds/clap.wav")
+tom = mixer.Sound("sounds/tom.wav")
 
 
 def play_notes():
@@ -61,29 +61,31 @@ def play_notes():
                 pygame.mixer.Channel(4).play(clap)
             if i == 5:
                 pygame.mixer.Channel(5).play(tom)
-                
+
 
 def draw_grid(clicks, beat):
-    # left box-Arguments (x, y, with, height, tick)
+    # left box-Arguments (x, y, wiDth, height, tick)
     left_box = pygame.draw.rect(screen, gray, [0, 0, 200, HEIGHT], tickness1)
-    botton_box = pygame.draw.rect(screen, gray, [0, HEIGHT - 200, WITH, 200], tickness1)
+    botton_box = pygame.draw.rect(
+        screen, gray, [0, HEIGHT - 200, WIDTH, 200], tickness1
+    )
     boxes = []  # steps
     colors = [gray, white, gray]
-    hi_hat_text = label_font.render('Hi Hat', True, white)
+    hi_hat_text = label_font.render("Hi Hat", True, white)
     screen.blit(hi_hat_text, (30, 30))
-    snare_text = label_font.render('Snare', True, white)
+    snare_text = label_font.render("Snare", True, white)
     screen.blit(snare_text, (30, 130))
-    kick_text = label_font.render('Kick', True, white)
+    kick_text = label_font.render("Kick", True, white)
     screen.blit(kick_text, (30, 230))
-    crash_text = label_font.render('crash', True, white)
+    crash_text = label_font.render("crash", True, white)
     screen.blit(crash_text, (30, 330))
-    clap_text = label_font.render('Clap', True, white)
+    clap_text = label_font.render("Clap", True, white)
     screen.blit(clap_text, (30, 430))
-    tom_text = label_font.render('Tom', True, white)
+    tom_text = label_font.render("Tom", True, white)
     screen.blit(tom_text, (30, 530))
 
     for i in range(instruments):
-        # surface, color, start position (x, y), end position, with
+        # surface, color, start position (x, y), end position, wiDth
         pygame.draw.line(screen, gray, (0, i * 100), (200, i * 100), tickness1)
     # NESTED Loop
     for i in range(beats):
@@ -95,27 +97,62 @@ def draw_grid(clicks, beat):
             else:
                 color = green
 
-            rect = pygame.draw.rect(screen, color,  # TEST --> print(f"i: {i}  j: {j}  rect: {rect}")
-                                    [i * ((WITH - 200) // beats) + 205,  # initial position (x axis)
-                                     (j * 100) + 5,  # initial position (y axis)
-                                     (WITH - 200) // beats - 10,  # with a bias
-                                     ((HEIGHT - 200) // instruments) - 10],  # high
-                                    0, 3)
+            rect = pygame.draw.rect(
+                screen,
+                color,  # TEST --> print(f"i: {i}  j: {j}  rect: {rect}")
+                [
+                    i * ((WIDTH - 200) // beats) + 205,  # initial position (x axis)
+                    (j * 100) + 5,  # initial position (y axis)
+                    (WIDTH - 200) // beats - 10,  # with a bias
+                    ((HEIGHT - 200) // instruments) - 10,
+                ],  # high
+                0,
+                3,
+            )
 
-            pygame.draw.rect(screen, gold, [i * ((WITH - 200) // beats) + 200, (j * 100), ((WITH - 200)) // beats,
-                                            ((HEIGHT - 200) // instruments)], 5, 5)
-            pygame.draw.rect(screen, black, [i * ((WITH - 200) // beats) + 200, (j * 100), ((WITH - 200)) // beats,
-                                             ((HEIGHT - 200) // instruments)], 3, 5)
+            pygame.draw.rect(
+                screen,
+                gold,
+                [
+                    i * ((WIDTH - 200) // beats) + 200,
+                    j * 100,
+                    (WIDTH - 200) // beats,
+                    ((HEIGHT - 200) // instruments),
+                ],
+                5,
+                5,
+            )
+            pygame.draw.rect(
+                screen,
+                black,
+                [
+                    i * ((WIDTH - 200) // beats) + 200,
+                    j * 100,
+                    (WIDTH - 200) // beats,
+                    ((HEIGHT - 200) // instruments),
+                ],
+                3,
+                5,
+            )
             if color == green:
-                x_img = i * ((WITH - 200) // beats) + 205
+                x_img = i * ((WIDTH - 200) // beats) + 205
                 y_img = (j * 100) + 5
                 screen.blit(image, (x_img, y_img))
 
             # this list box was empty. So it add boxes as a list
             boxes.append((rect, (i, j)))
-        active = pygame.draw.rect(screen, blue,
-                                  [beat * ((WITH - 200) // beats) + 200, 0, ((WITH - 200) // beats), instruments * 100],
-                                  5, 3)
+        active = pygame.draw.rect(
+            screen,
+            blue,
+            [
+                beat * ((WIDTH - 200) // beats) + 200,
+                0,
+                ((WIDTH - 200) // beats),
+                instruments * 100,
+            ],
+            5,
+            3,
+        )
     return boxes
 
 
