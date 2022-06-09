@@ -18,6 +18,14 @@ tickness1 = 5
 screen = pygame.display.set_mode([WITH, HEIGHT])
 pygame.display.set_caption('Beat Maker')
 label_font = pygame.font.Font('Roboto-Bold.ttf', 32)
+# init mixer
+pygame.mixer.init(frequency=44100, size=-16, channels=2, buffer=128)
+ch1 = pygame.mixer.Channel(0)
+ch2 = pygame.mixer.Channel(1)
+ch3 = pygame.mixer.Channel(2)
+ch4 = pygame.mixer.Channel(3)
+ch5 = pygame.mixer.Channel(4)
+ch6 = pygame.mixer.Channel(5)
 
 fps = 60
 # MASTER CLOCK
@@ -32,7 +40,7 @@ playing = True
 active_length = 0
 active_beat = 1
 beat_changed = True
-crovo = pygame.image.load('crovo.png')
+image = pygame.image.load('crovo.png')
 
 # --- LOAD IN SOUNDS ---
 hi_hat = mixer.Sound('sounds/hi hat.wav')
@@ -48,17 +56,17 @@ def play_notes():
     for i in range(len(clicked)):
         if clicked[i][active_beat] == 1:
             if i == 0:
-                hi_hat.play()
+                ch1.play(hi_hat)
             if i == 1:
-                snare.play()
+                ch2.play(snare)
             if i == 2:
-                kick.play()
+                ch3.play(kick)
             if i == 3:
-                crash.play()
+                ch4.play(crash)
             if i == 4:
-                clap.play()
+                ch5.play(clap)
             if i == 5:
-                tom.play()
+                ch6.play(tom)
 
 
 def draw_grid(clicks, beat):
@@ -107,7 +115,7 @@ def draw_grid(clicks, beat):
             if color == green:
                 x_img = i * ((WITH - 200) // beats) + 205
                 y_img = (j * 100) + 5
-                screen.blit(crovo,(x_img, y_img))
+                screen.blit(image, (x_img, y_img))
 
             # this list box was empty. So it add boxes as a list
             boxes.append((rect, (i, j)))
@@ -127,7 +135,6 @@ while run:
     if beat_changed:
         play_notes()
         beat_changed = False
-        print(play_notes())
     # check if someone is pressing a key, mouse, etc (every event)
     for event in pygame.event.get():
         # if some quit, stop the game
