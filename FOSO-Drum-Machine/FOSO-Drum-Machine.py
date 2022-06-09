@@ -78,17 +78,17 @@ def draw_grid(clicks, beat):
     botton_box = pygame.draw.rect(screen, gray, [0, HEIGHT - 200, WITH, 200], tickness1)
     boxes = []  # steps
     colors = [gray, white, gray]
-    hi_hat_text = label_font.render('Hi Hat', True, white)
+    hi_hat_text = label_font.render('Crovo', True, white)
     screen.blit(hi_hat_text, (30, 30))
-    snare_text = label_font.render('Snare', True, white)
+    snare_text = label_font.render('Toide', True, white)
     screen.blit(snare_text, (30, 130))
-    kick_text = label_font.render('Kick', True, white)
+    kick_text = label_font.render('Dambro', True, white)
     screen.blit(kick_text, (30, 230))
-    crash_text = label_font.render('crash', True, white)
+    crash_text = label_font.render('Ikir', True, white)
     screen.blit(crash_text, (30, 330))
-    clap_text = label_font.render('Clap', True, white)
+    clap_text = label_font.render('Verde', True, white)
     screen.blit(clap_text, (30, 430))
-    tom_text = label_font.render('Tom', True, white)
+    tom_text = label_font.render('Tano', True, white)
     screen.blit(tom_text, (30, 530))
 
     for i in range(instruments):
