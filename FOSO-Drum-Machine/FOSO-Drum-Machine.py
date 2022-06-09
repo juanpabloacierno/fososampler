@@ -37,7 +37,14 @@ playing = True
 active_length = 0
 active_beat = 1
 beat_changed = True
-image = pygame.image.load('crovo.png')
+#images
+crovo = pygame.image.load('images/crovo.png')
+toide = pygame.image.load('images/toide.png')
+dambro = pygame.image.load('images/dambro.png')
+ikir = pygame.image.load('images/ikir.png')
+naso = pygame.image.load('images/naso.png')
+tano = pygame.image.load('images/verde.png')
+verde = pygame.image.load('images/tano.png')
 
 # --- LOAD IN SOUNDS ---
 hi_hat = mixer.Sound('sounds/hi hat.wav')
@@ -108,10 +115,31 @@ def draw_grid(clicks, beat):
                                             ((HEIGHT - 200) // instruments)], 5, 5)
             pygame.draw.rect(screen, black, [i * ((WITH - 200) // beats) + 200, (j * 100), ((WITH - 200)) // beats,
                                              ((HEIGHT - 200) // instruments)], 3, 5)
-            if color == green:
+            # FOSO sprites
+            if color == green and j == 0:
                 x_img = i * ((WITH - 200) // beats) + 205
                 y_img = (j * 100) + 5
-                screen.blit(image, (x_img, y_img))
+                screen.blit(crovo, (x_img, y_img))
+            if color == green and j == 1:
+                x_img = i * ((WITH - 200) // beats) + 205
+                y_img = (j * 100) + 5
+                screen.blit(toide, (x_img, y_img))
+            if color == green and j == 2:
+                x_img = i * ((WITH - 200) // beats) + 205
+                y_img = (j * 100) + 5
+                screen.blit(dambro, (x_img, y_img))
+            if color == green and j == 3:
+                x_img = i * ((WITH - 200) // beats) + 205
+                y_img = (j * 100) + 5
+                screen.blit(ikir, (x_img, y_img))
+            if color == green and j == 4:
+                x_img = i * ((WITH - 200) // beats) + 205
+                y_img = (j * 100) + 5
+                screen.blit(tano, (x_img, y_img))
+            if color == green and j == 5:
+                x_img = i * ((WITH - 200) // beats) + 205
+                y_img = (j * 100) + 5
+                screen.blit(verde, (x_img, y_img))
 
             # this list box was empty. So it add boxes as a list
             boxes.append((rect, (i, j)))
