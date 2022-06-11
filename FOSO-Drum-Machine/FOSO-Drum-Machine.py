@@ -37,7 +37,18 @@ playing = True
 active_length = 0
 active_beat = 1
 beat_changed = True
+<<<<<<< HEAD
 image = pygame.image.load("crovo.png")
+=======
+#images
+crovo = pygame.image.load('images/crovo.png')
+toide = pygame.image.load('images/toide.png')
+dambro = pygame.image.load('images/dambro.png')
+ikir = pygame.image.load('images/ikir.png')
+naso = pygame.image.load('images/naso.png')
+tano = pygame.image.load('images/verde.png')
+verde = pygame.image.load('images/tano.png')
+>>>>>>> 8f99fb0f20b2c289d0644ec317b9d8adbd0e4920
 
 # --- LOAD IN SOUNDS ---
 hi_hat = mixer.Sound("sounds/hi hat.wav")
@@ -73,6 +84,7 @@ def draw_grid(clicks, beat):
     )
     boxes = []  # steps
     colors = [gray, white, gray]
+<<<<<<< HEAD
     hi_hat_text = label_font.render("Hi Hat", True, white)
     screen.blit(hi_hat_text, (30, 30))
     snare_text = label_font.render("Snare", True, white)
@@ -84,6 +96,19 @@ def draw_grid(clicks, beat):
     clap_text = label_font.render("Clap", True, white)
     screen.blit(clap_text, (30, 430))
     tom_text = label_font.render("Tom", True, white)
+=======
+    hi_hat_text = label_font.render('Crovo', True, white)
+    screen.blit(hi_hat_text, (30, 30))
+    snare_text = label_font.render('Toide', True, white)
+    screen.blit(snare_text, (30, 130))
+    kick_text = label_font.render('Dambro', True, white)
+    screen.blit(kick_text, (30, 230))
+    crash_text = label_font.render('Ikir', True, white)
+    screen.blit(crash_text, (30, 330))
+    clap_text = label_font.render('Verde', True, white)
+    screen.blit(clap_text, (30, 430))
+    tom_text = label_font.render('Tano', True, white)
+>>>>>>> 8f99fb0f20b2c289d0644ec317b9d8adbd0e4920
     screen.blit(tom_text, (30, 530))
 
     for i in range(instruments):
@@ -112,6 +137,7 @@ def draw_grid(clicks, beat):
                 3,
             )
 
+<<<<<<< HEAD
             pygame.draw.rect(
                 screen,
                 gold,
@@ -138,8 +164,37 @@ def draw_grid(clicks, beat):
             )
             if color == green:
                 x_img = i * ((WIDTH - 200) // beats) + 205
+=======
+            pygame.draw.rect(screen, gold, [i * ((WITH - 200) // beats) + 200, (j * 100), ((WITH - 200)) // beats,
+                                            ((HEIGHT - 200) // instruments)], 5, 5)
+            pygame.draw.rect(screen, black, [i * ((WITH - 200) // beats) + 200, (j * 100), ((WITH - 200)) // beats,
+                                             ((HEIGHT - 200) // instruments)], 3, 5)
+            # FOSO sprites
+            if color == green and j == 0:
+                x_img = i * ((WITH - 200) // beats) + 205
+>>>>>>> 8f99fb0f20b2c289d0644ec317b9d8adbd0e4920
                 y_img = (j * 100) + 5
-                screen.blit(image, (x_img, y_img))
+                screen.blit(crovo, (x_img, y_img))
+            if color == green and j == 1:
+                x_img = i * ((WITH - 200) // beats) + 205
+                y_img = (j * 100) + 5
+                screen.blit(toide, (x_img, y_img))
+            if color == green and j == 2:
+                x_img = i * ((WITH - 200) // beats) + 205
+                y_img = (j * 100) + 5
+                screen.blit(dambro, (x_img, y_img))
+            if color == green and j == 3:
+                x_img = i * ((WITH - 200) // beats) + 205
+                y_img = (j * 100) + 5
+                screen.blit(ikir, (x_img, y_img))
+            if color == green and j == 4:
+                x_img = i * ((WITH - 200) // beats) + 205
+                y_img = (j * 100) + 5
+                screen.blit(tano, (x_img, y_img))
+            if color == green and j == 5:
+                x_img = i * ((WITH - 200) // beats) + 205
+                y_img = (j * 100) + 5
+                screen.blit(verde, (x_img, y_img))
 
             # this list box was empty. So it add boxes as a list
             boxes.append((rect, (i, j)))
